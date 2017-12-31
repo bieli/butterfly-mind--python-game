@@ -1,4 +1,4 @@
-# Butterfly Mind - unique logic game for girls & geeks ;-)
+# Butterfly Mind - experimental logic game for girls & geeks ;-)
 
 [![Build Status](https://travis-ci.org/bieli/butterfly-mind--python-game.png)](https://travis-ci.org/bieli/butterfly-mind--python-game)
 
