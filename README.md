@@ -8,8 +8,11 @@ General idea it's training important area in our head - short memory.
 
 Program draw 3 letters in easy mode or butterflies in hard mode
 on screen and we must to remember letters or shapes of butterflies.
-Next after we click SPACE key we can see next set of butterflies,
-but only one is from last set.
+Next after we click 1 or 2 or 3 key (referenced to object line)
+we can see next set of butterflies, but only one is from last set.
+
+We have 120 seconds to the end of game.
+We can see seconds/scoring information on game screen.
 
 Difficult in this game it's select letter or butterfly shape
 in new set from last set.
