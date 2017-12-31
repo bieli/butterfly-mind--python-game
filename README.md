@@ -1,5 +1,7 @@
 # Butterfly Mind - unique logic game for girls & geeks ;-)
 
+[![Build Status](https://travis-ci.org/bieli/butterfly-mind--python-game.png)](https://travis-ci.org/bieli/butterfly-mind--python-game)
+
 ## Inspiration and game scenario
 
 General idea it's training important area in our head - short memory.
