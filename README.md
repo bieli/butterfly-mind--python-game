@@ -23,7 +23,7 @@ in new set from last set.
 
 ![Game screen shot - mode EASY](https://raw.githubusercontent.com/bieli/butterfly-mind--python-game/master/resources/img/screen_shots/game_screenshot.1.png)
 
-![Game screen shot - mode HARD](https://raw.githubusercontent.com/bieli/butterfly-mind--python-game/master/resources/img/screen_shots/game_screenshot.3.png)
+![Game screen shot - mode HARD](https://raw.githubusercontent.com/bieli/butterfly-mind--python-game/master//resources/img/screen_shots/game_screenshot.3.png)
 
 
 ## How to run
