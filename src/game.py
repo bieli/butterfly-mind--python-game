@@ -26,7 +26,6 @@ pink = (255, 192, 203)
 springgreen = (0, 255, 127)
 limegreen = (50, 205, 50)
 darkgreen = (0, 100, 0)
-bg = pygame.image.load("img/bg1.jpg")
 last_str = ''
 
 
@@ -52,42 +51,46 @@ def new_positions(pattern='ABCDEFGHIJLMNOP', max=3):
     return positions, new_str, rnd_choice
 
 
-def show(pos, alpha_value, generated_objects):
+def show(resources, pos, alpha_value, generated_objects, mode):
     b_line = 250
     pos_no = 0
 
     for butterflly in generated_objects:
-        # hard to recognize - butterfly shape font
-        # ptext.draw(butterflly,
-        #            center=(screen.get_height() // 2 + 120 + pos[pos_no], b_line), fontname=FONT_PATH2,
-        #            fontsize=FONT_SIZE_BIG, shadow=(1, 1),
-        #            color="red", gcolor="hotpink", owidth=1.5, ocolor="black", alpha=0.8)
+        shadow = (0, 0)
+        if mode == 1:
+            fontname = resources.FONT_PATH
+        elif mode == 2:
+            fontname = resources.FONT_PATH2
+        elif mode == 3:
+            shadow = (1, 1)
+            fontname = resources.FONT_PATH2
 
-        # simple color and LETTERS fonts
         ptext.draw(butterflly,
-                   center=(screen.get_height() // 2 - 150 + pos[pos_no], b_line), fontname=FONT_PATH,
-                   fontsize=FONT_SIZE_BIG, shadow=(0, 0),
+                   center=(resources.get_screen().get_height() // 2 - 150 + pos[pos_no], b_line), fontname=fontname,
+                   fontsize=resources.FONT_SIZE_BIG, shadow=shadow,
                    color="pink", owidth=0.4, ocolor="red", alpha=alpha_value)
 
         ptext.draw("{}".format(pos_no + 1),
-                   center=(screen.get_height() // 2 - 300, b_line + 20), fontname=FONT_PATH_KEYS,
-                   fontsize=FONT_SIZE_BIG, shadow=(0, 0),
+                   center=(resources.get_screen().get_height() // 2 - 300, b_line + 20),
+                   fontname=resources.FONT_PATH_KEYS,
+                   fontsize=resources.FONT_SIZE_BIG, shadow=(0, 0),
                    color="gray", owidth=0.2, ocolor="black", alpha=0.5)
         b_line += 150
         pos_no += 1
 
 
-def start():
+def start(resources, mode):
     global elasped_seconds
-    print(_('Starting GAME screen...'))
+    print('Starting GAME screen...')
 
     points = -1
     clicks = 0
     done = False
-    start_game = False
     pygame.display.update()
 
     pos, gen, rnd_choice = new_positions()
+
+    bg = pygame.image.load("resources/img/bg1.jpg")
 
     alpha_value = 1.0
     while not done:
@@ -101,12 +104,9 @@ def start():
             if event.type == pygame.QUIT:
                 done = True
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                done = True
-                # TODO: add return to main screen
-                # welcome()
+                raise SystemExit(points)
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
                 done = True
-                start_game = True
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 # alpha_value = 0.0
                 pos, gen, rnd_choice = new_positions()
@@ -134,25 +134,28 @@ def start():
                     print(" - {} choice: {}".format(choice, selected))
                 pos, gen, rnd_choice = new_positions()
 
-        screen.blit(bg, (0, 100))
+        resources.get_screen().blit(bg, (0, 100))
 
-        show(pos, alpha_value, gen)
+        show(resources, pos, alpha_value, gen, mode)
 
-        # pygame.draw.rect(screen, darkgreen, (screen.get_height() - 80, screen.get_width() - 80, 200, 200))
-        ptext.draw(_("Butterfly Mind"),
-                   center=(screen.get_height() // 2 + 120, screen.get_width() // 2 - 470), fontname=FONT_PATH,
-                   fontsize=FONT_SIZE_MEDIUM,
+        ptext.draw("Butterfly Mind",
+                   center=(resources.get_screen().get_height() // 2 + 120,
+                           resources.get_screen().get_width() // 2 - 470),
+                   fontname=resources.FONT_PATH,
+                   fontsize=resources.FONT_SIZE_MEDIUM,
                    color="purple", gcolor="red", owidth=1.5, ocolor="hotpink", alpha=1.0)
 
-        ptext.draw("Credits: {}".format(points), bottomleft=(screen.get_height() // 2 + 220, screen.get_width() // 2 - 330),
+        ptext.draw("Credits: {}".format(points), bottomleft=(resources.get_screen().get_height() // 2 + 220,
+                                                             resources.get_screen().get_width() // 2 - 330),
                    fontsize=64,
                    color="purple", gcolor="purple2", owidth=0.8, ocolor="hotpink", alpha=1.0)
 
-        ptext.draw("Seconds: {}".format(elasped_seconds), bottomleft=(screen.get_height() // 2 - 220, screen.get_width() // 2 - 330),
+        ptext.draw("Seconds: {}".format(elasped_seconds), bottomleft=(resources.get_screen().get_height() // 2 - 220,
+                                                                      resources.get_screen().get_width() // 2 - 330),
                    fontsize=64,
                    color="purple", gcolor="purple2", owidth=0.8, ocolor="hotpink", alpha=1.0)
 
         pygame.display.flip()
         clock.tick(60)
 
-    return start_game
+    return points

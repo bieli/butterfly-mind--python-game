@@ -2,7 +2,7 @@ import string
 
 import pygame
 
-from random import *
+from random import sample, randint
 
 
 def remove_matches(text, to_remove):
@@ -13,16 +13,16 @@ def remove_matches(text, to_remove):
     return new
 
 
-def uniquify(string, max):
+def uniquify(text, maximum):
     output = []
     seen = set()
-    for word in string:
-        if max <= 0:
+    for word in text:
+        if maximum <= 0:
             break
         if word not in seen:
             output.append(word)
             seen.add(word)
-            max -= 1
+            maximum -= 1
     return ''.join(output)
 
 
@@ -78,7 +78,7 @@ def make_new_game_obj(last_game_objects, last_selected_obj, allchars=string.asci
     new_pair = new_rand[:-1]
     output = new_pair + last_selected_obj
     data = [[ch] for ch in output]
-    o = shuffle(data)
+    # out = shuffle(data)
     return ''.join([ch[0] for ch in data])
 
 
@@ -93,7 +93,8 @@ def fill_gradient(surface, color, gradient, rect=None, vertical=True, forward=Tr
 
     Pygame recipe: http://www.pygame.org/wiki/GradientCode
     """
-    if rect is None: rect = surface.get_rect()
+    if rect is None:
+        rect = surface.get_rect()
     x1, x2 = rect.left, rect.right
     y1, y2 = rect.top, rect.bottom
     if vertical:
