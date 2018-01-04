@@ -41,11 +41,11 @@ $ python3.5 run_game.py
 - *BSD
 - MacOSX
 - Windows
-- Android
+- Android ([Thanks for pygame for mobile platforms support - for example Android](https://www.renpy.org/why.html))
 
 ## Development
 
-#### How to running unit tests (warning! took a few minutes)
+#### How to running unit tests
 
 ```
 $ cd <project-dir>
@@ -56,11 +56,11 @@ $ python3.5 -m unittest tests.ToolsTest.TestTools
 - [x] welcome scene
 - [x] welcome controls (ESCAPE, ENTER)
 - [x] game scene
-- [ ] game controls (ESCAPE, SAPACE)
+- [x] game controls (ESCAPE, SPACE)
 - [x] game logic library
 - [x] unit tests for game logic library
 - [ ] summary / scores / winners scene
 - [ ] music
-- [ ] refactoring
+- [ ] refactoring for cross platform with for example: RenPy
 - [ ] multiplatform automatic builds in releases
 - [ ] performance in rivalization & points & levels
