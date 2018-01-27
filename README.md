@@ -59,6 +59,7 @@ $ python3.5 -m unittest tests.ToolsTest.TestTools
 - [x] game controls (ESCAPE, SPACE)
 - [x] game logic library
 - [x] unit tests for game logic library
+- [ ] scorring (small butterflies when we guessing) on game bottom view
 - [ ] summary / scores / winners scene
 - [ ] music
 - [ ] refactoring for cross platform with for example: RenPy
